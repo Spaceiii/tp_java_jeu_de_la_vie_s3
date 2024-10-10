@@ -12,8 +12,8 @@ public class Fille extends Femme {
     }
 
     @Override
-    public Humain rencontre(Humain h) throws BreedingForbiddenException {
-        throw new BreedingForbiddenException(this, h);
+    public Humain rencontre(Humain h) throws NoBreadingException {
+        throw new NoBreadingException(this, h, NoBreadingException.NoBreadingReason.KID);
     }
 
     protected void setEsperanceVie() {

@@ -33,13 +33,15 @@ public class Femme extends Humain {
 
     public Humain rencontre (Homme h) throws MeetingException {
         int f = loto.nextInt(0, 100);
-        if (
-            age <= 15 || age >= 50
-            || h.getAge() <= 15
-            || poids > 150 || h.getPoids() > 150
-            || f > fertilite
-        ) {
-            throw new NoBreadingException(this, h);
+        if (age <= 15 || age >= 50)
+        {
+            throw new NoBreadingException(this, h, NoBreadingException.NoBreadingReason.AGE);
+        } else if (h.getAge() <= 15) {
+            throw new NoBreadingException(this, h, NoBreadingException.NoBreadingReason.KID);
+        } else if (poids > 150 || h.getPoids() > 150) {
+            throw new NoBreadingException(this, h, NoBreadingException.NoBreadingReason.WEIGHT);
+        } else if (f > fertilite) {
+            throw new NoBreadingException(this, h, NoBreadingException.NoBreadingReason.FERTILITE);
         }
 
         int p = loto.nextInt(0, 100);

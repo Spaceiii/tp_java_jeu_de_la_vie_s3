@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class TP2 {
+public class TP4 {
     public static void main(String[] args) {
         int nbTourJeu = Integer.parseInt(args[0]);
         int tailleInit = Integer.parseInt(args[1]);

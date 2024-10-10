@@ -20,19 +20,16 @@ public class Homme extends Humain {
     public Humain rencontre (Femme f) throws MeetingException {
         int b = loto.nextInt(0, 100);
         int c = loto.nextInt(0, 100);
-        if (
-            f.isKid()
-            || (age <= 15 || age >= 50 || f.getAge() <= 15)
-            || (poids > 150 || f.getPoids() > 150)
-        ) {
-            throw new BreedingForbiddenException(this, f);
-        }
-
-        if (
-            b < batifolage
-            || c > f.getFertilite()
-        ) {
-            throw new NoBreadingException(this, f);
+        if (f.isKid()) {
+            throw new NoBreadingException(this, f, NoBreadingException.NoBreadingReason.KID);
+        } else if (age <= 15 || age >= 50 || f.getAge() <= 15) {
+            throw new NoBreadingException(this, f, NoBreadingException.NoBreadingReason.AGE);
+        } else if (poids > 150 || f.getPoids() > 150) {
+            throw new NoBreadingException(this, f, NoBreadingException.NoBreadingReason.WEIGHT);
+        } else if (c > f.getFertilite()) {
+            throw new NoBreadingException(this, f, NoBreadingException.NoBreadingReason.FERTILITE);
+        } else if (b < batifolage) {
+            throw new NoBreadingException(this, f, NoBreadingException.NoBreadingReason.BATIFOLAGE);
         }
 
         Humain e;

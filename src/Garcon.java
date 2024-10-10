@@ -1,6 +1,4 @@
 public class Garcon extends Homme {
-    int salaire;
-
     Garcon(String nom) {
         super(nom);
         salaire = 0;
@@ -28,12 +26,12 @@ public class Garcon extends Homme {
         int b = loto.nextInt(0, 100);
         int c = loto.nextInt(0, 100);
 
-        if (
-            b < batifolage
-            || f.isKid()
-            || c > f.getFertilite()
-        ) {
-            throw new NoBreadingException(this, f);
+        if (b < batifolage) {
+            throw new NoBreadingException(this, f, NoBreadingException.NoBreadingReason.BATIFOLAGE);
+        } else if (f.isKid()) {
+            throw new NoBreadingException(this, f, NoBreadingException.NoBreadingReason.KID);
+        } else if (c < f.getFertilite()) {
+            throw new NoBreadingException(this, f, NoBreadingException.NoBreadingReason.FERTILITE);
         }
 
         Humain e;
